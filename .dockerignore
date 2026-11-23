@@ -1,0 +1,10 @@
+venv
+.venv
+.mongodata
+.pytest_cache
+__pycache__
+logs
+frontend
+tests
+.claude
+*.pyc

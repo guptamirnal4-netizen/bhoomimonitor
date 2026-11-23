@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+
+</title>
+    <script>
+        function printdata() {
+            document.getElementById('btdivid').style.display = "none";
+            document.title = "Draft_Order";
+            window.print();
+            document.getElementById('btdivid').style.display = "block";
+        }
+
+    </script>
+
+    <style type="text/css" media="print">
+    * { display: none; }
+</style>
+     <script type="text/javascript">
+         document.onmousedown = disableclick;
+         status = "Right Click Disabled";
+         function disableclick(event) {
+             if (event.button == 2) {
+                 alert(status);
+                 return false;
+             }
+         }
+    </script>
+    <style type="text/css">
+
+        body {
+    background-image:url('images/rtcprint.png');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+    </style>
+</head>
+<body>
+    <form name="form1" method="post" action="./ReportPreview.aspx?Type=1&amp;MutType=23&amp;Phodi_Process=" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="UPON+/P6w+cj4bW3l9xkX6sN+u3fKSaq5yifBRGhd8ur86Hl51a5l4bF+720tBKRVtOMxnZz7bvL/JwpCiFGY7EashUwK9Qitss+bQe9GXVzF1/C2gIcB0xBAmoYauSJ" />
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="D0029BFD" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+</div>
+         <div id="btdivid" style="padding-left: 150px;">
+           
+             
+           
+        </div>
+    <div id="div_body">
+      <div id="divXML">
+            <?xml version="1.0" encoding="utf-8"?>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/Common.css" />
+    <style type="text/css">
+            .td
+            {
+            text-align:center;
+            font-size:13px;
+            font-weight:bold;
+            }
+
+            .td1
+            {
+            width:100px;
+            }
+
+            .table
+            {
+            border : 1px solid black;
+            width:90%;
+            }
+
+            .table3
+            {
+            border-left : 1px solid black;
+            border-right : 1px solid black;
+            width:90%;
+            }
+
+            .table1
+            {
+            width:90%;
+            }
+
+            .td2
+            {
+            border-bottom : 1px solid black;
+            border-right : 1px solid black;
+            font-weight:bold;
+            text-align:center;
+            font-size:10px;
+            }
+
+            .td22
+            {
+            border-right : 1px solid black;
+            font-weight:bold;
+            text-align:center;
+            font-size:10px;
+            }
+
+            .td8
+            {
+            border-right : 1px solid black;
+            font-weight:bold;
+            text-align:center;
+            font-size:10px;
+            }
+
+            .td9
+            {
+            border-right : 1px solid black;
+            font-weight:bold;
+            text-align:left;
+            font-size:10px;
+            }
+
+            .td6
+            {
+            border-bottom : 1px solid black;
+            border-right : 1px solid black;
+            font-weight:bold;
+            text-align:left;
+            font-size:10px;
+            }
+
+            .td3
+            {
+            border-bottom : 1px solid black;
+            border-right : 1px solid black;
+            }
+
+            .td4
+            {
+            border-bottom : 1px solid black;
+            font-size:10px;
+            font-weight:bold;
+            text-align:center;
+            }
+
+            .td7
+            {
+            font-size:14px;
+            font-weight:bold;
+            text-align:center;
+            width:50px;
+            }
+            .tdWidth
+            {
+            font-size:14px;
+            font-weight:bold;
+            text-align:center;
+            width:450px;
+            }
+            .tdLeft
+            {
+            font-size:14px;
+            
+            text-align:left;
+            
+            font-family:cursive;
+            }
+
+
+            .td77
+            {
+            font-size:10px;
+            text-align:left;
+            }
+
+            .tdowner
+            {
+            font-size:9px;
+            text-align:left;
+            }
+
+            .tdowner11
+            {
+            font-size:9px;
+            text-align:left;
+            border-right : 1px solid black;
+            }
+
+            .tdowner1
+            {
+            font-size:10px;
+            text-align:center;
+            hieght:50px;
+            }
+
+            .td5
+            {
+            border-bottom : 1px solid black;
+            border-right : 1px solid black;
+            font-weight:bold;
+            text-align:center;
+            font-size:9px;
+            }
+
+            .td55
+            {
+            border-bottom : 1px solid black;
+            border-right : 1px solid black;
+            font-weight:bold;
+            text-align:left;
+            font-size:9px;
+            }
+
+            .tdCul
+            {
+            border-left : 1px solid black;
+            text-align:center;
+            font-size:9px;
+            }
+
+            .tdCulName
+            {
+            border-left : 1px solid black;
+            text-align:left;
+            font-size:9px;
+            }
+
+            .div
+            {
+            font-size:25px;
+            }
+
+          </style>
+  </head>
+  <style>
+          table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 90%;
+          }
+
+          td, th {
+          
+          text-align: left;
+          padding: 0px;
+          }
+
+          tr:nth-child(even) {
+
+          }
+        </style>
+  <body style="border: 1px solid black;">
+    <div id="printableArea" align="center">
+      <div>
+        <table>
+          <tr>
+            <td class="td7" colspan="2">ನಮೂನೆ-ವರದಿ</td>
+          </tr>
+          <tr>
+            <td class="td7" colspan="2">ಮ್ಯುಟೇಶನ್ ರಿಜಿಸ್ಟರ್ ಪ್ರತಿ</td>
+          </tr>
+          <tr>
+            <td class="td7" colspan="2"></td>
+          </tr>
+          <tr>
+            <td class="td7" colspan="2"></td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td style="width:75px;">ಜಿಲ್ಲೆ :</td>
+            <td class="tdLeft">ಬಾಗಲಕೋಟ</td>
+            <td style="width:110px;">ವಹಿವಾಟು ವರ್ಷ :</td>
+            <td class="tdLeft">2015-2016</td>
+            <td style="width:110px;">ಮೂಲ:</td>
+            <td class="tdLeft">ಬ್ಯಾಂಕ್ ಚೀಟಿ</td>
+            <td style="width:65px;">ಸಂಖ್ಯೆ :</td>
+            <td class="tdLeft">14113</td>
+          </tr>
+          <tr>
+            <td class="tdLeft">ತಾಲ್ಲೂಕು:</td>
+            <td class="tdLeft">ಮುಧೋಳ</td>
+            <td class="tdLeft">ವಹಿವಾಟು ಸಂಖ್ಯೆ :</td>
+            <td class="tdLeft">169</td>
+            <td class="tdLeft">ಬದಲಾವಣೆ ರೀತಿ :</td>
+            <td class="tdLeft">ಹಕ್ಕು ಮತ್ತು ಋಣ</td>
+            <td class="tdLeft">ದಿನಾಂಕ:</td>
+            <td class="tdLeft">21/01/2016</td>
+          </tr>
+          <td class="tdLeft">ಹೋಬಳಿ:</td>
+          <td class="tdLeft">ಲೋಕಾಪೂರ</td>
+          <td class="tdLeft">M.R.ನಂಬರ್ :</td>
+          <td class="tdLeft">T120</td>
+          <td class="tdLeft">ಸ್ವಾಧೀನತೆ ರೀತಿ:</td>
+          <td class="tdLeft">ಬಿಡುಗಡೆ</td>
+          <tr>
+            <td class="tdLeft">ಗ್ರಾಮ:</td>
+            <td class="tdLeft" colspan="11">ಲೋಕಾಪೂರ</td>
+          </tr>
+        </table><table style="border: 1px solid black;"><tr><td class="tdLeft"></td><td class="tdLeft"></td><td colspna="2">(ವಿಸ್ತೀರ್ಣ ಎಕರೆ ಮತ್ತು ಗುಂಟೆಗಳಲ್ಲಿ)</td><td class="tdLeft"></td><td class="tdLeft"></td></tr><tr><td class="tdLeft" style="border: 1px solid black;">ಬಾದಿತವಾದ ಸರ್ವೆ ಮತ್ತು ಹಿಸ್ಸಾ ನಂ.</td><td class="tdLeft" style="border: 1px solid black;">ಆಧಾರ/ಭೋಗ್ಯ ಮಾಡಿದವರು</td><td class="tdLeft" style="border: 1px solid black;">ವಿಸ್ತೀರ್ಣ</td><td class="tdLeft" style="border: 1px solid black;"></td><td class="tdLeft" style="border-top: 1px solid black;">ತಪಾಸಣೆ ಅಧಿಕಾರಿ ರುಜು/ಷರಾ</td></tr><tr style="border: 1px solid black;"><td class="tdLeft" style="border: 1px solid black;">56/*/1<br /></td><td class="tdLeft">ವೆಂಕನಗೌಡ ಉರ್ಫ ವೆಂಕಟ ಪಾಟೀಲ - ನಿಂಗನಗೌಡ<br />ಋಣಗಳು : [MR 3760/2003-2004ಬಂಡಿಂಗಬೋ1730]</td><td class="tdLeft"></td><td class="tdLeft"></td><td style="border-left: 1px solid black;"></td></tr></table><table><tr><td class="tdLeft">ಮ್ಯುಟೇಶನ್ ಆದೇಶದ ವಿವರ :</td></tr><tr><td class="tdLeft">ಪ್ರಯುಕ್ತ ಮ್ಯುಟೇಶನ್</td></tr><tr><td class="tdLeft">ಅಂಗೀಕರಿಸಿದೆ.</td></tr></table><table><tr><td class="tdLeft">ಮೊಕ್ಕಾಂ :</td><td class="tdLeft">ಮುಧೋಳ</td><td class="tdWidth"></td><td class="tdWidth"></td><td class="tdLeft" style="width:130px;">ಸಹಿ/-</td></tr><tr><td class="tdLeft" style="width:195px;">ಮ್ಯುಟೇಶನ್ ಆದೇಶದ ದಿನಾಂಕ :</td><td class="tdLeft">25/02/2016</td><td class="tdWidth"></td><td class="tdWidth"></td><td class="tdLeft">ರಾಜಸ್ವ ನಿರೀಕ್ಷಕರು</td></tr><tr><td></td><td></td><td class="tdWidth"></td><td class="tdWidth"></td><td class="tdLeft">ತಾಲ್ಲೂಕು  
+                    ಮುಧೋಳ</td></tr></table><table><tr><td class="td7" colspan="20"></td></tr><tr><td style="width:130px;"></td><td></td></tr><tr><td style="width:140px;" colspan="8"></td><td style="width:80px;"></td><td></td><td style="text-align:right"></td></tr></table></div>
+    </div>
+  </body>
+</html>
+        </div>
+        <div id="divMsg" style="text-align: center;">
+            <span id="lblMsg" style="color:Red;"></span>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

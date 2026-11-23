@@ -1,0 +1,710 @@
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" /><meta name="author" /><title>
+	BHOOMI
+</title><link href="Images/logo.png" rel="shortcut icon" type="image/png" /><link href="css/sb-admin-2.css" rel="stylesheet" />
+
+    
+
+    <script src="js/bootstrap.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/Jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link href="css/select2.min.css" rel="stylesheet" />
+    <script src="js/select2.min.js"></script>
+    
+    <style>
+        .custom-modal-dialog {
+            min-width: 80%;
+            margin-right: 1em;
+        }
+
+        .custom-iframe {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function SetTarget() {
+            document.forms[0].target = "_blank";
+        }
+    </script>
+    <script type="text/javascript">
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+
+        function Add(InputVal) {
+
+            document.getElementById("ctl00_MainContent_txtSurvey").readOnly = false;
+            document.getElementById('ctl00_MainContent_txtSurvey').value = document.getElementById('ctl00_MainContent_txtSurvey').value + InputVal;
+
+            $.ajax({
+                type: "POST",
+                url: "RTC.aspx/GetSurnoc",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    alert('true');
+                }
+            });
+            document.getElementById("ctl00_MainContent_txtSurvey").readOnly = true;
+            // document.getElementById("txt").readOnly = true;
+        }
+        function OnSuccessCallback(res) {
+            alert(res);
+        }
+
+        function OnFailureCallback() {
+            alert('Error');
+        }
+
+
+    </script>
+
+    <script>
+        //  $(document).ready(function () {
+        //    $('#myModal').modal('show');
+       // });
+    </script>
+
+    <style>
+        .Modalcenter {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-10%, -0%);
+        }
+    </style>
+
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+    </script>
+
+</head>
+<body>
+    <form name="aspnetForm" method="post" action="./" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="S+des9rWRsno4N25786xTkkDNzI6prbDpyP2a8v1Ff81JYS2G/QzbhyD0WENMYiQ7XioqfDQD3f4w1PbszIvBoJlYB9hocMkQ3yrZOnCHd7YQYiKQwKWe5SlV1vc0lRLpyo+Egaf1MQNvjra+wdlYZAXS9s91Leolyijc5wDwIrOriHlu9Cso4SEahQkftjeCqT0SCr2uegA7iGFiGo3yYunFP+IGQD/u5PC5E+G/4DLwRMPh9WyYZ0deMGbu/tTM+yo463oLvyjY2mwyhwrd0y+I9ukjUuAq1oahSZevm28ykBIzPFKbamZwRF6AyT3zaTqdp1ZhAD+7kWKi4tCw/Qsb6qrIo3/W944caJo6WmaOgoM7IgPHdgBwGD9y878zxTZsbh93i6hAOSeASMtBnHckHEuuJAouHWduX5ZowvzBPEueDarDWz/mfpKhsa2QaJmVq2phb3YIP2TMmGfoVM5FgBDLlj6h8iy5EvoWOqiJzlkGtckKZes2bTX6R21czO2TQNexwJOfodrN073L3K2hHYYnCOUMipnoTSTIsRJZ5os+fTRvnPLYmRLcBiq6asz3k+HMLvr/cm75Ct2nHKU28NrZvnllNEQR8NB9x+YVleh/sfas5U/tSubVUuEbjs/5uyatuMeX/b5TCu+HviPvG7oF5EY/gc4LIb0CfFsARr8reRylXGi/aCIdbZSwpQHNwraJS++SQ7jE7JjjD1x3FkE93AX1mmu0Q/llSuVrC2sI+jSziW/BzbOD7voaMFxgdKojUkc+Pv7b6qp3gMWFfeH5rKRAAn6RCuae4w+XbI2ZSRgbDyq5r9vMGjptUkKx1X96SzcH49MbhQkQMn4zzCsR5eQLw5N4pPP7cRXLIbfTGHuqT6p5tffLOpPZJ8P5jff8YOziENb5AmOfsPKIAyfCcT/cUqlq3U4/E0s9wPYFoxPEVFAaH1Cvycf3GAtR3AdTnmaJlckAOpE+vlS0Mca7e03rR+tbFgPL9aTpgBsVQmc5j9Fsz2izejjh6NmHM53p9acsKaV0jwIKr9Xr1+A9TejxFMuv+qtm7ZViT7FI5a2mXZHoPcg6nTrFYWg3LkWhATEAw6d2ZDZSwJ9qGPOZYy1AuwGCs5x7auBAAIU64iaSdu1tyTf/69Rz/8iuSERqiJ7VN0DKFxbPp9iTxxwR7r7Ti1lUB1CSiuGjWbblCfhkRwIwo4bTINUQ+FAe+z9Jy+QlqRywVuosOqOm7U1ht9KqYUWi2/v3AbrHeXgGaiD58T105oNVFMNOl5Am4CkeFQX4ePCVvi2mnFJ+NUI5SUMqdc50/kBd5/XKd5+8+e6pB15ppROZEGKjx3nJGcqemnUT43ev5JLW9vCdMumO/s0AHnCnmE0VK0o1xlCz9UCC+89EB7IBoV20S24e823C9c7H/SWaHHxtuXF9vx2gY41a9HdDzBlHCdDHjn+oetXPlhmI9hhugnsL3TvHUNXLvaw8OqOd9IiP4Tajfb7AkOYMuso3rHegsM+PIAs1zyP6h461aNl8gC33KqOOetCoSMo5ecZCbm8FahWNMX5F7Z6W0BBTUb23LwHqMvrRCzQ9ATg4yhJ2LYIexKdeq/Q3bV0uwYnBNRxW4DKTxToPJnmhU4wxhhTb5XOwB4jb/Bo8gxDEedgEWcTPNSt8rECXA271l9Bx/G4q70qxCbIbGtcWG1zuTauIZshtLO02y0hewXHr9V27do4hcR12TtuIrqrEUvVs11/rQDmWgVvAfzWYGZYF318gVW+b08XQGBVpqahin/EdSeilooj5E1GbIbA6gWGwmQ+O0DmFoNGg0P+cHkQKIX2tIfaXVuFKp+V9TmgdU815k8BjIwzGXlXfB+SYAKoEjP2SUqCBfl6D9ntHCTFdJ5mZGtSEy+07D4gLSAsLHHd1x8Ym9qDboDxMBlra0aEzizh0hWXEVONk9C9SA96LJw2/P/IziP87DLk72DPEq+3SgRflevcbw2kCQnsWVyi3sdRut+Y8YVR4oIdYM5GPMrWlhjPCukgFXjAAMBPnQiP5Tv2XhBOaUmZ418yWjww9v7Hiv1rwl3/IO0sb4taBohnIYFGLNAImZhBxxd2WDtoje7mBX8XQrO5iummmUXBqTDZMjBb6XB2hWHszi9XFwZWPnO+HzXAxnMwPF4fo4OY/I3PMVYUUTx09Z+dmgIiU3t2TFxw8/xANdYvn7t4DMQN9fJ/JO5NW+4r5FhMAd+EWWPfbUPXt1CMrZjvMalaxeq1gJQxSVJyETdZaUmuc7srG5WH6oYtKG6KmtAn25XsF0lQLO7rJnNfHuQpqepGbTvnqG6tSohsMF3y7Znnjk6wtCv6RM3rl/3G+AnCbqU2uU32T6l5wB5h4IN7vuw73FagqjxusghCydCthLfoYJNhgMAkS/xCz8m7QivVCN3pcST/YMYbMGpPB1yDUEoaJslJwE8s4F8QxsHOusjj19q1H37YHT10aROGZ94WbiiaLQEF5ytngzQ+dSkbPFsRlLAtjvf/vrIDfxhz+l6gxUocF+UFdIyqnERGByftw9UlowMV+3mTEHAJRFWuUoZXkb3oYB8LYVBXRLdVj0B4U/uIXd/SVJ71N2DpwUq8KzZl1y4w7TprYCUyE5ua4inYKjbiS4yS7jynfduQTcBhUBCEhh6Ohwq6EumBZFuvV1tiHOhEwkI/6AlAOE1YpSmfnDXBu5noka/xijamddxgB4675fNywFDkoWRd/HOXaf2cYmhoBglBfj6LAsBC+6C5R0mokuhc2BNybcBfzwIM3FOUMKblCRmbrPdkZEVcNB3Immd1JANUsOWz0HM3c31dn37T/mujK/3BSv//IV2hQlsRQGk0l8VO9efDMPy0fPov0WTkbKzb8I8QWEcW9w11W/54kA64GmoRmXLmU2noFksINsk5qdgbRER7u5EcZjtigaxDN5+kPPH9DpRhvJccP5QVJHLoJ0v97RwsxoywsepLUTl8RHqTaU43l7crJMfW9ZD0sYB7IBLSXjOnB5X2GAx5lJ3OifBaCZ85RYSehW46DPRPXrprGMxCA0XD1xNq+p5jEG4Bcv43X9lbcUQF0TgIG2pHdI4QDqvIDvyVWeySil4DmTFOwrvAgCfKHhb19AUt8J8KeujsA1HAKS1GmnYij/xP/2T0q+kulnwH8vqMegnS1e4Etekd06FQ8BWuFL5NIuZlDkjTeLK2ULPB6+EeT6ZlnrzzgFAHjwe7AouibsuTbXMAhx9A6OOCt1iWQxZ2xNFH/IkYNqVnalDdZTSQ9LggOv1pCkplOzhQKQ/sQ17X0gvr6tsP2jW+AtMS66Kz6Q0kaTV2N68vjLvsWfhx3W0e11tr33PRC6oxDUrglIBAPgNoZjlRq3Bfj4oraWlVsiVhyzEN7LERi9CZHXucEYYzDwzieA1XmO0aLut2ZMT6Y1Y3PgSyyfGFy8XQ6AJlWKm3SDQnCNKMRDwLkwAWxcPSIRX4EWFkVhPxqS9BU/Ua7jlIW3QVRHLM2Cs7gHpumicnBm1neTIbD7100Mq0z6PpY3a7WRuG7UiE1dY4W/CmiDK3AFx9NsE53p2DdIx3HtitxuaePxh5VgHv6KghiKCxNJJv4B9E0Gd5/qW3jQYwF3nwuy9N40gQb7FCMh86Qnn/uSvhV2Cl048+hjBufzBNc2WMLqkqihTn6t2N9e7niIUlbkAEEG888y0NCFBK+vRbOwH+UZhxnozko++So++yhVolQrdxRO1WQfKZ5aR9U5ysNslH2xox4/hsl93oTjGDGzlVYl9n/Fb/yHPqxIQFomczQeqbmznNv7WniMDPGPy3W759O6EzraAPi/KL9HDu7YDTSs+zWDcGDp9rJp7xh3UvoDURBkmNqtFFcabeI+Jxt3SKeQb8elFjWLCzjiGpeJAJh91z3H0gVNBT4NVxy8HWQ7i35SZz3R789yAH0N/2+EaOyhecpCOcK/EBNWwCKVr2LnkqqJBhbnXHH9S80+Wk+Tb6iEFxjt3kPI2KdZYl3EDnuuwFrmTTwtDNGesxK3GuJHsxhDmUOozxdghBYnYHXaE7c82CcYc1BE1ISXx1l6TwaGhQwWOJ3f20b1/kmDel17g+HJdHZjb1rsWUENI4/+pJa72F/gdhx6NxeA6dEs1T7HOUyCANpfCIiA68kwmzp0eFzNPMLiWE1Gd7/AMgP9lMKXS/HeqUbzOKHMb2Y2T/6uWIkT9nWrX73EkfS1sJ6dqY1mT0bBoC4eUV/NCeMW0RaA+UmuRmB7C1SByBhRx89DGU4gl/2PLW9SIZ42KPvKPK6YGejcz68fP9PYL/ykxKBg7KF6m2iCLFPU7+DAaE9lG8rTg2t7tdS9vSAKpc2Cmp3aFGH6UhSRR3wm4zs1ZuY3LU0rlFBAJvqXbLa0JuBBmSiNnso3MbksMr/Pdn8bsE4tTPPrlmjUfu9oUlubtJTYhEtZ4pXpXntQPqQ1h8HHRY/S8+FXpfnhZX0CxzSiuZstx4cgNr22wh0WLM9CIj8SEjXi6HQoBOLwrNxwKsQ2ZlLCYbzXn3RU8/dPKiOJNnYOnEA/mA4JA5zfEQm8GupDOd3vzyHDtChnrU5pbneL/WYjvCNqZ+lpvbSzJmFekXtHPPTDxoqKrmyICPceEPx0Wx8UCGJA9jXjlfwPVQdfDNdkVQQVXW/Qf9HkFt7hBmcOYZsla9kjdtvX6uKtO/jMQ/ooI9X5mHo0XrOBwtCronhoNbw/QGI+zixlr5iIYUvGzD6pMwd2sN3e6rSAZ4YkRsqXBtJurDzdUmrGGgyLSmYQGO99PDtnwmDCiR72UD+mR+1fiKmZTmyq7RblvpfI3pm9nu8Fz55WGfA0XakiY3iV/QtxX3ui1tkfJllUS2u7v6fsAeTG3laeRzA4LxqmjKVFLwZnNfFBG9ov+q1AdnQzzgItbiqtxgRAIWa1SgaowHUbPNZuXtigDd4pnFoiPCaJ/nHpo5lzXoX8tpDvqfFBD8eBQ01FQ8h2Yz+gvvcdDQjlhUv5LZOMQlPQnHq2rEl96S8bdn3XcFBMhAiEgnPjBGydlVbsiJvUa8tch/2nydlugjfFD/2sr4WlYiyxWbG2yxjrjF62/wSXLspbTJIw2xaxLAdITBxm9oMABaP5YT0gTAZ8EFUx9DGZSPq2ft8Ok4fhc69hwSue1uxUd9HtR+hHsvcQZbaozyzdOSGSyXLLwjTdPLhQma2l4rPnOFprCquEAyet1Ttk+NU2BLmyBkVQEB5OkIt3TMd4gxnOlNnoreuoe+RHnL0j+jycGLY8+zxnY9dWbr/rkPNE4WYeqbR63Eh4D+gEupEDeHDJEFo3C/gbqWCJBfJTofzH/SH6udIJiSfHelshzdkMPB5pknl8Oi692U1OWHbiYsOk2X/WmFYl3gDmwKmH1tPBwKarreZ2PFPR6d+YoAniDB7fKm7SblZ/ynj3gXFFAYObdR7W+M2cKPub6NY0T8y9nmWEwkNjX8Zkk1il0YLjQoxapAuIk7F0WWj7ocEQzzZ5nFzFLaaQSzTiUMWim15rWo/9ReU0azoL8F/8W364sUowjXRP3btMQNHkgLEgE9Anx09P3Q1hVMOEt3KknC034wgLg+BTDVwkH9lrip/GtLCiJ451IjkS4NIee1p9FARYDrOuy7AUe9KpfHVGpyLQt6fBmf8fXVrhG/YmAHkl+CNlvTNpl7e2xGTAlQSH2GNBjU2Ql6k/Kd0J6V7kP1O8OurMBZBD11PTmyOJb9cNBwoPuE8NTRWhByHAGOp8ahQTA4YM8+h0HVjXiWaSuljhao07dOCSpQ/oHkJko1zGOTqQhhp82LHXuNPDXT0KrcWbQgPEVU29QUQ1qUqwmUlcMl4aXPxdUEtqg5yhp60sRMLUz/17scIKBxcWWa832xBgRRsdk0fpABtjxaf2ZQJrw6Kql9+qjv5hChXBeJcYTgIAxYINODPZeao1V9BpPT1kXc2z0wAoQg3SIyy8KC03wETVeS8cNH+jiY8URABlu+h+nTeca5xqd0EISw8zeoACqWIZwjQdd5um7bjbUxIVB3f1qhSIGqm33+pa59kgWVdThttjBlUaVjLhnwg3a1XgoFHf3LhwzzgOgaTI1MchI2STfhNb+zofexBA71cRFlNm8iIyGO1L3zn4GzDcehjw8nmkalB7X9gf7WFb3rLSOzhvLf/PV7BN34q+tDFOjoEdByfli4nXe89CrbcQgZjze70nTNWdfUfKvmkEb7av+7/iTfCucFgrARxmblPWOdF5ZYnhlgB0W6NFCkbYOFBx44sozQP0uWvGa9oNrYMUMwEbBHZ3k+h3VDLiyPdf1IsuEYjuCSkJ6Hfsfn3k/Mc6d+gEHQo4foJVfeYmNsoCqaX3nZL8+FTa8vxze5mx2/Bwwymo35kxd9xeR6mBG3mBKugvIgkgEEt00BXGPyA4fwYj6C1JiY812isciCBvg3Vc/j6vP5XCqiI180ONgIOwap5mEmJB4uHNPtFlH5hkp5z71QASbfiYqduI5gSHIs0MvhJYx0RptqIYS1CfCzlrkjPmUMHifTOu0x086aKbd+HxRkvQOhWPdKH3CtPqJWX3PexjNhyG9YlxDROYEZ+FDFx5QxAwANL7uZD3WBvAryj4vEDUeX6JwAca6W4tnMKxTZN4tOEZNIf7mvNj2DufwuFaeJphLjfWANROgWRBWTTS9hyyqwl7eUxUcXFp9vcUjrbGorUpHcUrDvealdOJBJDubfYITVi+JpvkoGvthS+W0I7/pDwVoAFbSQyTrqMoEI+/72bfD1rIF4annDWExVTgJF+Hhu2+qkI4aWMm4S4hmcqbtdY6sNVXmuR+NwFY/ZxCu0LW7hJBWHsElt/RM1Ilpe1W0E+FLU+9cd2Eq93dAbpFfKd+C+wh1w2rgof4GQzkrkzpgWi4RJfH0PZ/lq7B6g6KE/U8p2tYW60znw0vtyhmNBav47a+p5ubMpY5GNNwwZVnKCIuQtui0qTfHONMU4n67emfH/I6bnZySC/6rdCb7678OdQe9Gr3eOuI+vp7n3rlF/fviHRIPmPNvFVVtsdAW4dvmBy6PMaqZLzzGbWVyKHCIIPPgkGbF2h1CQP3aXkw5ZH+rP5tWrM7cECpZtdu+vC1crlsniK4bduuTbWpTrq60ZfKz3fBngJtrcldvznJKDT78xkMyMXCCJhgf96JQ5ZupMSkXu7e+2MjLrgsRkuxosxTyOJTslzOvkpumh6o+iq8pk0XODU85AAyzuDPIME+LVZqxYh3nXWn7VfDcL6E0YumXOT1l4stJfuzaQg+qvyIpbt9d4NlR89Nb0hw7xZgVYQWrJTATPnUXHE/Kz7tvJRwn5JDWJ8jFg0zxtuctIEQUsP3KU55iWxL2AdvAaPYVqnZiZGyED7mSYMMfJa8rq1nusajo7LdF5Eq2SWL9eP8z1F9GpoXypMGAnZnp0UR+lfCKS80dY8FYhrcPSNsMOzmKDKC24pqSI/C+y4y7jIGk4e0NEcc7pVUdr/PGDs2NGzFRR8nCF6Tmsoqfdx62GLcOz/ck8obGYuCiI3N0yLMcxsPMdQxG0qPU5k0uyWxKVFN1NonTxDngxvYfpt5Hjd64Ixv0Rx1marjuXeTKE71FoqFsVoz7siNzJ5ax7Nl8WrViUlKfsHQovX5R42qYIZR1xtK5iah+t/z5Yhv3q0pf26Lo75kCsT9cYCBvbYI+vKtFlZ8rAyk8whk98WUyeFeXGPOYvH+Dkewu4" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/service2/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZG4ze-PcgSU5boDd5B-lF4gaMMC_UQ46VbtYWkHRUFvxOVctw_wY2baC7EnGWqypAA2&amp;t=638369264615952268" type="text/javascript"></script>
+
+
+<script src="/service2/ScriptResource.axd?d=x6wALODbMJK5e0eRC_p1LbAUCgJNEcQN5zSmYZQsnZvWU7N1cB3YPvA8ulXq0t9U64AxxeRer-nl3cljDY2QYE9qc3MKCOWDW4bP9lXlw1IH8TA3PjKTG0tvuuul6t7F0&amp;t=41339750" type="text/javascript"></script>
+<script src="/service2/ScriptResource.axd?d=P5lTttoqSeZXoYRLQMIScCAa7GjH8ch-fMiknugW7BHV3dZTkKNdtoRvd8vJu_5_iZbs0gGEmYzLnaqr7VacLv1IciFI9NXDjPtNGvP875CaboKPCk9TeSAU9GvHkMz80&amp;t=41339750" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="190BCA4D" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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" />
+</div>
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-collapse" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header" style="height: 110px;">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <br />
+                    <div class="container">
+                        <div class="row">
+
+                            <img class="logo" src="Images/logo.png" style="height: 60px;" />
+                            &nbsp;&nbsp; &nbsp;&nbsp;
+
+            <span class="text-primary" style="font-size: xx-large;">
+                <label id="ctl00_lblmain" style="font-weight: 100;">Bhoomi Online | Land Records | View </label>
+                <br />
+                <h4>
+                    <label id="ctl00_lblrecords" style="font-weight: 100;">Records of Rights,Tenancy &amp; Crops(RTC) Form 16 | Mutation Register | Mutation Status</label>
+                </h4>
+            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="nav navbar-top-links navbar-right" style="height: 70px;">
+                    <br />
+                    
+                </ul>
+                <br />
+                <br />
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="RTCHelp.html" id="ctl00_lnkHelp" target="_blank">Help</a></li>
+
+                    
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 8%;">
+                    
+                    <input type="submit" name="ctl00$btnKannada" value="ಕನ್ನಡ" onclick="Forcolor;" id="ctl00_btnKannada" />
+                    <input type="submit" name="ctl00$btnEnglish" value="English" onclick="Forcolor;" id="ctl00_btnEnglish" style="color:White;background-color:Green;" />
+                </ul>
+
+            </nav>
+            
+    <p>
+        <link href="css/sb-admin-2.css" rel="stylesheet" />
+        <script src="js/bootstrap.min.js"></script>
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <script src="js/bootstrap.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+    </p>
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$MainContent$ScriptManager1', 'aspnetForm', ['tctl00$MainContent$UpdatePanel1',''], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+    <div class="panel panel-body">
+        <div class="row">
+            
+            <input type="submit" name="ctl00$MainContent$Tab2" value="Current Year" id="ctl00_MainContent_Tab2" class="Clicked btn btn-primary" style="width:175px;" />
+            <input type="submit" name="ctl00$MainContent$Tab3" value="Old Year" id="ctl00_MainContent_Tab3" class="Initial btn btn-default" style="width:175px;" />
+            
+            
+            <a href="MRRedirect.aspx" id="ctl00_MainContent_MR" target="_blank" style="width: 175px;" Width="175px" class="Initial btn btn-default">MR</a>
+            <a href="MRStatusRedirect.aspx" id="ctl00_MainContent_MRStatus" target="_blank" style="width: 175px;" Width="175px" class="Initial btn btn-default">Mutation Status</a>
+            <a href="https://landrecords.karnataka.gov.in/service64/" id="ctl00_MainContent_A1" style="width: 175px;" Width="175px" target="_blank" class="Initial btn btn-default">Khata Extract</a>
+            <a href="https://bhoomojini.karnataka.gov.in/oscitizen/" id="ctl00_MainContent_A2" style="width: 175px;" Width="175px" target="_blank" class="Initial btn btn-default">Survey Document</a>
+            <a href="https://bhoomojini.karnataka.gov.in/service39/" id="ctl00_MainContent_A3" style="width: 175px;" Width="175px" target="_blank" class="Initial btn btn-default">Akarband</a>
+
+              <a href="https://rdservices.karnataka.gov.in/BhoomiMaps/" id="ctl00_MainContent_A5" style="width: 175px; " Width="175px" target="_blank" class="Initial btn btn-default">RTC with sketch [Beta]</a> 
+            <a href="https://rdservices.karnataka.gov.in/echawadi/" id="ctl00_MainContent_A6" style="width: 175px; margin-top:5px;" Width="175px" target="_blank" class="Initial btn btn-default">eChavadi</a>
+	    <a href="https://rdservices.karnataka.gov.in/service84/" id="ctl00_MainContent_A7" style="width: 175px; margin-top:5px;" Width="175px" target="_blank" class="Initial btn btn-default">Survey Sketch</a>
+            <a href="https://recordroom.karnataka.gov.in/service4" id="ctl00_MainContent_A8" style="width: 175px; margin-top:5px;" Width="175px" target="_blank" class="Initial btn btn-default">Record Room Document</a>
+            <a href="https://rtc.karnataka.gov.in/service78/" id="ctl00_MainContent_A4" style="color: white;background-color:  #008000ab; margin-top:5px;" target="_blank" class="Initial btn btn-default">Click here to get the original digitally signed RTC and MR</a>
+
+ 
+
+            
+            
+            
+        </div>
+       
+    </div>
+
+
+
+    <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="min-width: 100%; margin-right: 1em;">
+            <div class="modal-content ">
+                <div class="panel panel-default" style="min-width: 80%; margin-right: 1em;">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h4 class="modal-title"><b>Official portal of the Revenue Commissionerate </b></h4>
+                            </div>
+                            <div class="col-sm-5">
+                            </div>
+                            <div class="col-sm-1">
+                                <a class="btn   " style="margin-top: 0px; background-color: #fa4747; color: #fff;" href="#" aria-expanded="false" aria-controls="collapseExample" id="btnCloseModalInstructions" data-dismiss="modal">
+                                    <i class="fa fa-window-close" aria-hidden="true" style="font-size: 15px">Close</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <iframe width="100%" height="600" src="https://revenuecommissionerate.karnataka.gov.in/"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    
+            <div id="ctl00_MainContent_UpdatePanel1">
+	
+                    <div class="panel panel-default" style="margin-bottom: 15px;"  >
+                        <div class="panel-heading">
+                            <span>Select Survey Number</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <span class="text-info">District</span>
+                                            <select name="ctl00$MainContent$ddlCDistrict" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$ddlCDistrict\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_MainContent_ddlCDistrict" tabindex="1" class="form-control">
+		<option value="0">Select District</option>
+		<option selected="selected" value="2">BAGALKOTE</option>
+		<option value="12">BALLARI</option>
+		<option value="21">BANGALORE RURAL</option>
+		<option value="1">BELAGAVI</option>
+		<option value="20">BENGALURU</option>
+		<option value="29">BENGALURU SOUTH</option>
+		<option value="5">BIDAR</option>
+		<option value="27">CHAMARAJANAGARA</option>
+		<option value="28">CHIKKABALLAPUR</option>
+		<option value="17">CHIKKAMAGALURU</option>
+		<option value="13">CHITRADURGA</option>
+		<option value="24">DAKSHINA KANNADA</option>
+		<option value="14">DAVANAGERE</option>
+		<option value="9">DHARWAD</option>
+		<option value="8">GADAG</option>
+		<option value="23">HASSAN</option>
+		<option value="11">HAVERI</option>
+		<option value="4">KALABURAGI</option>
+		<option value="25">KODAGU</option>
+		<option value="19">KOLAR</option>
+		<option value="7">KOPPAL</option>
+		<option value="22">MANDYA</option>
+		<option value="26">MYSORE</option>
+		<option value="6">RAICHUR</option>
+		<option value="29">RAMANAGARA</option>
+		<option value="15">SHIVAMOGGA</option>
+		<option value="18">TUMAKURU</option>
+		<option value="16">UDUPI</option>
+		<option value="10">UTTAR KANNADA</option>
+		<option value="31">VIJAYANAGARA</option>
+		<option value="3">VIJAYAPURA</option>
+		<option value="30">YADAGIR</option>
+
+	</select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <span class="text-info">Taluk</span>
+                                            <select name="ctl00$MainContent$ddlCTaluk" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$ddlCTaluk\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_MainContent_ddlCTaluk" tabindex="2" class="form-control">
+		<option value="0">Select Taluk</option>
+		<option value="4">BADAMI</option>
+		<option value="5">BAGALKOTE</option>
+		<option value="2">BILAGI</option>
+		<option value="7">GULEDAGUDDA</option>
+		<option value="6">HUNGUND</option>
+		<option value="8">ILKAL</option>
+		<option value="1">JAMAKHANDI</option>
+		<option selected="selected" value="3">MUDHOL</option>
+		<option value="9">RABAKAVI BANAHATTI</option>
+		<option value="10">TERADALA</option>
+
+	</select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <span class="text-info">Hobli</span>
+                                            <select name="ctl00$MainContent$ddlCHobli" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$ddlCHobli\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_MainContent_ddlCHobli" tabindex="3" class="form-control">
+		<option value="0">Select Hobli</option>
+		<option selected="selected" value="2">LOKAPURA</option>
+		<option value="1">MUDHOLA</option>
+
+	</select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <span class="text-info">Village</span>
+                                            <select name="ctl00$MainContent$ddlCVillage" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$ddlCVillage\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_MainContent_ddlCVillage" tabindex="4" class="form-control">
+		<option value="0">Select Village</option>
+		<option value="21">ALAGUNDI B K</option>
+		<option value="44">ANTAPURA</option>
+		<option value="31">BADNURA</option>
+		<option value="42">BARAGI</option>
+		<option value="30">BHANTANURA</option>
+		<option value="39">BIDARI</option>
+		<option value="20">BOMMANABUDNI</option>
+		<option value="22">BUDNI B K</option>
+		<option value="40">BUDNI K D</option>
+		<option value="10">BYADARA ARALIKATTI</option>
+		<option value="26">CHICHAKHANDI B K</option>
+		<option value="34">CHICHAKHANDI K D</option>
+		<option value="28">CHIKKURA</option>
+		<option value="29">CHITRABHANUKOTI</option>
+		<option value="13">CHOWDAPURA</option>
+		<option value="16">DADANATTI</option>
+		<option value="27">GULAGALA JAMBAGI</option>
+		<option value="19">HALAKI</option>
+		<option value="1">HEBBALA</option>
+		<option value="14">HOSAKOTE</option>
+		<option value="43">INGALAGI</option>
+		<option value="9">JADARA ARALIKATTI</option>
+		<option value="38">JAMBAGI K D</option>
+		<option value="33">JEERAGALA</option>
+		<option value="32">JUNNURA</option>
+		<option value="11">JYALIKATTI B K</option>
+		<option value="12">JYALIKATTI K D</option>
+		<option value="17">KANASAGERI</option>
+		<option value="36">KASABA JAMBAGI</option>
+		<option value="6">LAKSHANATTI</option>
+		<option selected="selected" value="4">LOKAPURA</option>
+		<option value="41">MACHAKANURA</option>
+		<option value="15">MALLAPURA P L</option>
+		<option value="25">MARIKATTI</option>
+		<option value="37">METAGUD</option>
+		<option value="2">MUDDAPURA</option>
+		<option value="5">NAGANAPURA</option>
+		<option value="18">NINGAPURA</option>
+		<option value="8">PALKIMANYA</option>
+		<option value="35">PETLURA</option>
+		<option value="3">TIMMAPURA</option>
+		<option value="24">VAJJARAMATTI</option>
+		<option value="7">VARCHAGAL</option>
+		<option value="23">YADAHALLI</option>
+
+	</select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <span class="text-info">Survey Number</span>
+                                            <input name="ctl00$MainContent$txtCSurveyNo" value="56" maxlength="4" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$txtCSurveyNo\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;return isNumberKey(event)" id="ctl00_MainContent_txtCSurveyNo" tabindex="5" class="form-control" type="number" placeholder="Survey Number" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <span class="text-info">. </span>
+                                            
+                                            <input type="submit" name="ctl00$MainContent$btnCGo" value="Go" id="ctl00_MainContent_btnCGo" class="form-control" style="color:White;background-color:Blue;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <span class="text-info">Surnoc</span>
+                                            <select name="ctl00$MainContent$ddlCSurnocNo" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$ddlCSurnocNo\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_MainContent_ddlCSurnocNo" tabindex="6" class="form-control">
+		<option value="Select Surnoc">Select Surnoc</option>
+		<option selected="selected" value="*">*</option>
+
+	</select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <span class="text-info">Hissa No</span>
+                                            <select name="ctl00$MainContent$ddlCHissaNo" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$ddlCHissaNo\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_MainContent_ddlCHissaNo" tabindex="7" class="form-control">
+		<option value="Select Hissa">Select Hissa</option>
+		<option selected="selected" value="1025">1</option>
+		<option value="1098">2</option>
+		<option value="1561">3</option>
+
+	</select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <span class="text-info">Period</span>
+                                            <select name="ctl00$MainContent$ddlCPeriod" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$ddlCPeriod\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_MainContent_ddlCPeriod" disabled="disabled" tabindex="8" class="form-control">
+		<option value="Select Period">Select Period</option>
+		<option selected="selected" value="3552">2017-08-20 12:20:00 To Till Date (2026-2027)</option>
+
+	</select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2" style="display: none">
+                                        <div class="form-group">
+                                            <span class="text-info">Year</span>
+                                            <select name="ctl00$MainContent$ddlCYear" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$MainContent$ddlCYear\&#39;,\&#39;\&#39;)&#39;, 0)" id="ctl00_MainContent_ddlCYear" disabled="disabled" tabindex="9" class="form-control">
+		<option selected="selected" value="127">2026-2027</option>
+
+	</select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label>.</label>
+                                            <input type="submit" name="ctl00$MainContent$btnCFetchDetails" value="Fetch details" id="ctl00_MainContent_btnCFetchDetails" tabindex="8" class="form-control btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                       <div class="col-sm-12">
+                        <div class="well row=col-md-12 pb-2" style="margin-bottom: 15px;padding-bottom: 50px; padding-top: 10px;">
+
+                            <div class="col-md-12">
+                                <span id="ctl00_MainContent_LblRevCourtInfo" style="color:#0D2872;font-size:14px;">Revenue Court cases can be viewed on the website </span>
+
+                                <a href="https://rccms.karnataka.gov.in/" target="_blank"
+                                   style="color:#007bff; text-decoration:underline;">https://rccms.karnataka.gov.in/</a>
+                            </div>
+
+                            <div class="col-md-12 pt-1">
+                                <span id="ctl00_MainContent_LblEChawadiInfo" style="color:#0D2872;font-size:14px;">Using this link, Citizens can register as interested parties in ongoing transactions and receive SMS updates: </span>
+
+                                <a href="https://rdservices.karnataka.gov.in/echawadi/" target="_blank"
+                                   style="color:#007bff; text-decoration:underline;">https://rdservices.karnataka.gov.in/echawadi/</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-12">
+                        <div class="well row=col-md-12 pb-3" style="margin-bottom: 15px; padding-bottom: 10px; padding-top: 10px;">
+
+                            <div class="col-md-7">
+                                <span id="ctl00_MainContent_LblLandID" style="color:#0D2872;font-size:18px;font-weight:bold;">Your Land ID is : </span>
+                                <span>
+                                    <span id="ctl00_MainContent_LandID" style="color:#0D2872;font-size:18px;font-weight:bold;">5986 1500 1025</span>
+                                </span>
+                            </div>
+                            <div class="col-md-5 ">
+                                <span id="ctl00_MainContent_Blockchain_Verified" style="color:Green;font-size:16px;font-weight:bold;">RTC Documents you view here, are Blockchain Verified now</span>
+                                
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+
+
+                 
+                    <div id="ctl00_MainContent_div1" class="col-sm-8">
+                        <div class="panel panel-default pre-scrollable" style="height: 300px;">
+                            
+                             <div class="panel-heading">
+                                                <div class="row" style="box-shadow: 0px 0px;">
+                                                   
+                                                    <div class="col-sm-6" style=" padding-left: 40px;">
+                                                        <div class="form-group" style="margin-bottom: 0px;">
+                                                            <strong>
+                                                                <span id="ctl00_MainContent_LblOngoingTransaction">OnGoing Mutation :</span></strong>
+                                                            <span id="ctl00_MainContent_LblOngoingTransactionResult">No</span>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-2">
+                                                         </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group" style="margin-bottom: 0px;" >
+                                                            <strong>
+                                                                <span id="ctl00_MainContent_LblPYKI">PYKI  :</span>
+                                                            </strong>
+                                                            <span id="ctl00_MainContent_LblPYKIResult">No</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            <div class="panel-body">
+                                
+
+                                 <div>
+		<table class="table table-striped table-bordered table-hover" cellspacing="0" rules="all" border="1" id="ctl00_MainContent_grdCurrentYearOwnerDetails1" style="width:100%;border-collapse:collapse;">
+			<tr>
+				<th scope="col">Owner</th><th scope="col">Extent</th><th scope="col">Owner Category</th><th scope="col">Gov Restriction</th><th scope="col">Court stay</th><th scope="col">Alienated</th>
+			</tr><tr>
+				<td>
+                                                                <span id="ctl00_MainContent_grdCurrentYearOwnerDetails1_ctl02_lblowner">ಕೃಷ್ಣಾ ಭಾಗ್ಯ ಜಲ ನಿಗಮ ನಿಯಮಿತ </span>
+                                                            </td><td>
+                                                                <span id="ctl00_MainContent_grdCurrentYearOwnerDetails1_ctl02_lblext">12.21.0</span>
+                                                            </td><td>
+                                                                <span id="ctl00_MainContent_grdCurrentYearOwnerDetails1_ctl02_lblkhatha">Private</span>
+                                                            </td><td>
+                                                                <span id="ctl00_MainContent_grdCurrentYearOwnerDetails1_ctl02_lblGHissa">No</span>
+                                                            </td><td>
+                                                                <span id="ctl00_MainContent_grdCurrentYearOwnerDetails1_ctl02_lblGSurnoc">No</span>
+                                                            </td><td>
+                                                                <span id="ctl00_MainContent_grdCurrentYearOwnerDetails1_ctl02_lblGOldYear">No</span>
+                                                            </td>
+			</tr>
+		</table>
+	</div>
+
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div id="ctl00_MainContent_div3" class="col-sm-4">
+                        <div class="panel panel-default" style="height: 300px;">
+                            <div class="panel-heading">
+                                <span>Details</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <strong>
+                                                <span id="ctl00_MainContent_lblCVillage">Village</span></strong>
+                                            :
+                                            <span id="ctl00_MainContent_lblCValueVillage">LOKAPURA</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <strong>
+                                                <span id="ctl00_MainContent_lblCSurveyNo">Survey Number</span>
+                                            </strong>
+                                            :
+                                            <span id="ctl00_MainContent_lblCvalueSurveyNo">56</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <strong>
+                                                <span id="ctl00_MainContent_lblCSurnoc">Surnoc</span>
+                                            </strong>
+                                            :
+                                            <span id="ctl00_MainContent_lblCValueSurnoc">*</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <strong>
+                                                <span id="ctl00_MainContent_lblCHissaNo">Hissa No</span>
+                                            </strong>
+                                            : 
+                                            <span id="ctl00_MainContent_lblCValueHissaNo">1</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <strong>
+                                                <span id="ctl00_MainContent_lblCPeriod">Period</span>
+                                            </strong>
+                                            :
+                                            <span id="ctl00_MainContent_lblCValuePeriod">2017-08-20 12:20:00 To Till Date (2026-2027)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <strong>
+                                                <span id="ctl00_MainContent_lblCYear">Year</span>
+                                            </strong>
+                                            : 
+                                            <span id="ctl00_MainContent_lblCValueYear">2026-2027</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <div class="form-group">
+                                            <input type="submit" name="ctl00$MainContent$btnCPreview" value="View" id="ctl00_MainContent_btnCPreview" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <div class="form-group">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="ctl00_MainContent_Panel2" class="modal-open">
+		
+                        <div id="ctl00_MainContent_UpdateProgress2" style="display:none;">
+			
+                                <div style="position: absolute; background-color: #FAFAFA; z-index: 2147483647 !important; opacity: 0.8; overflow: hidden; text-align: center; top: 0; left: 0; height: 100%; width: 100%; padding-top: 20%;">
+                                    <img src="images/22.gif" />
+                                </div>
+                            
+		</div>
+                    
+	</div>
+                
+</div>
+        
+
+            <!-- /#page-wrapper -->
+            <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style="margin-bottom: 0; height: 0px; margin-bottom: 11px;">
+                <div class="container-fluid" style="height: 2px;">
+                    <div class="col-lg-12">
+
+                        
+                        <p class="text-center" style="color: steelblue; font-size: 10px;">
+                            <span id="ctl00_lblfooter22">Disclaimer : The information available on website is updated in all respect. Users may access the updated ROR details through online mode without any further requirement of visiting the department.</span><br />
+                            
+                            <br />
+                            &copy; 2026 -<span id="ctl00_lblfooter1">BHOOMI MONITORING CELL. All Rights Reserved.</span>(<span id="ctl00_lblServerIP">.63</span>)
+                            <br />
+                            <span id="ctl00_lblfooter2">Designed and Hosted by - BHOOMI MONITORING CELL</span>
+                        </p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- /#wrapper -->
+    
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(Sys.UI._UpdateProgress, {"associatedUpdatePanelId":"ctl00_MainContent_UpdatePanel1","displayAfter":500,"dynamicLayout":true}, null, null, $get("ctl00_MainContent_UpdateProgress2"));
+});
+//]]>
+</script>
+</form>
+    <link href="css/sb-admin-2.css" rel="stylesheet" />
+    
+    <script type="text/javascript">
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+    </script>
+</body>
+</html>
+
+

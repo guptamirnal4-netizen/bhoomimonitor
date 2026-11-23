@@ -1,0 +1,13 @@
+venv/
+.venv/
+.mongodata/
+logs/
+__pycache__/
+*.pyc
+.pytest_cache/
+.claude/
+node_modules/
+frontend/node_modules/
+.env
+.env.*
+.DS_Store
