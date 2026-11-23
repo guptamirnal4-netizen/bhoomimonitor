@@ -72,6 +72,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.middleware("http")
+async def enforce_api_key(request, call_next):
+    """When ATLAS_API_KEY is set, every /api/ route (monitoring, RTC, and
+    the check-now POST) requires it. Unset = open, for local development."""
+    expected = os.environ.get("ATLAS_API_KEY")
+    if expected and request.url.path.startswith("/api/") and request.method != "OPTIONS":
+        given = request.headers.get("x-api-key", "")
+        if not hmac.compare_digest(given, expected):
+            from fastapi.responses import JSONResponse
+            return JSONResponse({"detail": "Missing or invalid API key"}, status_code=401)
+    return await call_next(request)
+
 # tz_aware=True: see district_monitor_store.py's comment - without it,
 # pymongo hands back naive UTC datetimes even though we write
 # timezone-aware ones, breaking the aggregation layer's arithmetic.

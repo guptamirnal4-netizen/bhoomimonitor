@@ -113,3 +113,10 @@ def test_api_key_enforced_only_when_configured(monkeypatch):
     assert client.get("/api/options", params={"level": "taluk"}, headers={"X-API-Key": "wrong"}).status_code == 401
     # right key gets past auth to normal validation (422 = missing district)
     assert client.get("/api/options", params={"level": "taluk"}, headers={"X-API-Key": "secret"}).status_code == 422
+
+
+def test_api_key_middleware_covers_monitoring_and_post_routes(monkeypatch):
+    monkeypatch.setenv("ATLAS_API_KEY", "secret")
+    assert client.get("/api/districts").status_code == 401
+    assert client.post("/api/districts/monitor/check-now").status_code == 401
+    assert client.get("/api/summary", headers={"X-API-Key": "wrong"}).status_code == 401
